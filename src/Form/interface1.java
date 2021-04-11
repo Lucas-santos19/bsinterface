@@ -41,11 +41,12 @@ public class interface1 implements ActionListener {
         radios();
     }
 
+    ButtonGroup    Rgp =   new ButtonGroup();
+
     public void radios(){
         JRadioButton   rm1 =   new JRadioButton("Masculino");
         JRadioButton   rf2 =   new JRadioButton("Feminino");
         JRadioButton   rnb3 =  new JRadioButton("Não Binário");
-        ButtonGroup    Rgp =   new ButtonGroup();
 
         rm1.setBounds(10,240,100,30);
         rm1.setBackground(Color.darkGray);
@@ -58,6 +59,7 @@ public class interface1 implements ActionListener {
         rnb3.setBounds(10,280,100,30);
         rnb3.setBackground(Color.darkGray);
         rnb3.setForeground(Color.white);
+        rnb3.setSelected(true);
 
 
         Rgp.add(rm1);
@@ -70,13 +72,15 @@ public class interface1 implements ActionListener {
         panel.add(rnb3);
     }
 
-    public void textos()  {
-        MaskFormatter data = null;
 
-        JTextField nome = new JTextField();
-        JTextField faculdade = new JTextField();;
-        JTextField ra = new JTextField();;
-        JTextField nascimento = new JFormattedTextField(data);
+    MaskFormatter data = null;
+    MaskFormatter registro = null;
+    JTextField nome = new JTextField();
+    JTextField faculdade = new JTextField();
+    JTextField ra = new JTextField();
+    JTextField nascimento = new JTextField();
+
+    public void textos()  {
 
         JLabel tnome = new JLabel();;
         JLabel tfacul = new JLabel();;
@@ -90,8 +94,16 @@ public class interface1 implements ActionListener {
         } catch (ParseException e){
             e.printStackTrace();
         }
+         nascimento = new JFormattedTextField(data);
 
-        Dimension size = nome.getPreferredSize();
+        try{
+            registro = new MaskFormatter("######");
+            registro.setPlaceholderCharacter(' ');
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+        ra = new JFormattedTextField(registro);
+
 
         nome.setBounds(10,50,200,25);
         nascimento.setBounds(10,200,200,25);
@@ -127,15 +139,44 @@ public class interface1 implements ActionListener {
         panel.add(ra);
     }
 
-    public void controles(){
-        JButton limpar =  new JButton();;
-        JButton enviar =  new JButton();;
 
+    JButton limpar =  new JButton();
+    JButton enviar =  new JButton();
+    
+    public void controles(){
+        
         enviar.setText("Enviar");
         enviar.setBounds(10,430,90,20);
 
         limpar.setText("Limpar");
         limpar.setBounds(115,430,90,20);
+
+        enviar.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if ((nome.getText().trim().length() > 0) && (faculdade.getText().trim().length() > 0) && (ra.getText().trim().length() > 0) && (nascimento.getText().trim().length() > 0) ) {
+                    nome.setText(" ");
+                    faculdade.setText(" ");
+                    ra.setText(null);
+                    nascimento.setText(null);
+                    JOptionPane.showMessageDialog(enviar,"Dados enviados!");
+                } else {
+                    JOptionPane.showMessageDialog(enviar,"Preencha todos os campos corretamente.");
+                }
+            }
+        }));
+
+        limpar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              nome.setText(" ");
+              faculdade.setText(" ");
+              ra.setText(null);
+              nascimento.setText(null);
+              JOptionPane.showMessageDialog(limpar,"Campos Limpos com sucesso!");
+
+            }
+        });
 
         panel.add(enviar);
         panel.add(limpar);
@@ -144,6 +185,7 @@ public class interface1 implements ActionListener {
     public interface1(){
         screen();
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
