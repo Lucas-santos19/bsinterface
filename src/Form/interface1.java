@@ -1,4 +1,5 @@
 package Form;
+
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
@@ -11,17 +12,14 @@ import java.util.Date;
 
 public class interface1 implements ActionListener {
 
-     javax.swing.JFrame frame;
-     javax.swing.JPanel panel;
+     JFrame frame;
+     JPanel panel;
 
      public void screen(){
 
          Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\lucas\\IdeaProjects\\interface_bsi\\src\\assets\\cadastro.png");
-
          frame = new JFrame();
-
          frame.setIconImage(icon);
-
 
          frame.setTitle("Registro de dados");
          frame.setBounds(820,300,300,500);
@@ -36,6 +34,10 @@ public class interface1 implements ActionListener {
          panel.setBackground(Color.darkGray);
 
          frame.add(panel);
+
+         controles();
+         textos();
+         radios();
      }
 
      public void radios(){
@@ -70,15 +72,15 @@ public class interface1 implements ActionListener {
      public void textos()  {
          MaskFormatter data = null;
 
-         javax.swing.JTextField nome;
-         javax.swing.JTextField faculdade;
-         javax.swing.JTextField ra;
-         javax.swing.JTextField nascimento;
+         JTextField nome = new JTextField();
+         JTextField faculdade = new JTextField();;
+         JTextField ra = new JTextField();;
+         JTextField nascimento = new JFormattedTextField(data);
 
-         javax.swing.JLabel tnome;
-         javax.swing.JLabel tfacul;
-         javax.swing.JLabel tra;
-         javax.swing.JLabel tnas;
+         JLabel tnome = new JLabel();;
+         JLabel tfacul = new JLabel();;
+         JLabel tra = new JLabel();;
+         JLabel tnas = new JLabel();;
 
 
          try{
@@ -88,36 +90,23 @@ public class interface1 implements ActionListener {
              e.printStackTrace();
          }
 
-         nome        = new JTextField();
          nome.setBounds(10,50,200,25);
-
-         nascimento  = new JFormattedTextField(data);
          nascimento.setBounds(10,200,200,25);
-
-         faculdade   = new JTextField();
          faculdade.setBounds(10,100 ,200,25);
-
-         ra          = new JTextField();
          ra.setBounds(10,150,200,25);
 
-
-         tnome   = new JLabel();
          tnome.setText("Seu Nome");
          tnome.setBounds(10,30,200,20);
          tnome.setForeground(Color.white);
 
-
-         tfacul  = new JLabel();
          tfacul.setText("Seu Curso");
          tfacul.setBounds(10,80,200,20);
          tfacul.setForeground(Color.white);
 
-         tra     = new JLabel();
          tra.setText("Seu RA");
          tra.setBounds(10,130,200,20);
          tra.setForeground(Color.white);
 
-         tnas    = new JLabel();
          tnas.setText("Data de nascimento");
          tnas.setBounds(10,180,200,20);
          tnas.setForeground(Color.white);
@@ -136,28 +125,21 @@ public class interface1 implements ActionListener {
     }
 
      public void controles(){
-         javax.swing.JButton limpar;
-         javax.swing.JButton enviar;
+         JButton limpar =  new JButton();;
+         JButton enviar =  new JButton();;
 
-
-         enviar = new JButton();
          enviar.setText("Enviar");
          enviar.setBounds(10,430,90,20);
 
-         limpar = new JButton();
          limpar.setText("Limpar");
          limpar.setBounds(115,430,90,20);
 
          panel.add(enviar);
          panel.add(limpar);
-
     }
 
      public interface1(){
          screen();
-         textos();
-         radios();
-         controles();
      }
 
    @Override
