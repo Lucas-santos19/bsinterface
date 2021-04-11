@@ -75,6 +75,9 @@ public class interface1 implements ActionListener {
 
     MaskFormatter data = null;
     MaskFormatter registro = null;
+    MaskFormatter fnome = null;
+    MaskFormatter curso = null;
+
     JTextField nome = new JTextField();
     JTextField faculdade = new JTextField();
     JTextField ra = new JTextField();
@@ -103,6 +106,14 @@ public class interface1 implements ActionListener {
             e.printStackTrace();
         }
         ra = new JFormattedTextField(registro);
+
+        try{
+            fnome = new MaskFormatter("ULLLLLLLLLLL");
+            fnome.setPlaceholderCharacter(' ');
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+        nome = new JFormattedTextField(fnome);
 
 
         nome.setBounds(10,50,200,25);
