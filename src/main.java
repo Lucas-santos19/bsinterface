@@ -1,8 +1,14 @@
-import Form.interface1.*;
+import Form.interface1;
+
+import javax.swing.*;
 
 public class main {
 
     public static void main(String[] args) {
-        new Form.interface1();
+        SwingUtilities.invokeLater(new Runnable(){
+            public void run() {
+                new interface1();
+            }
+        });
     }
 }
